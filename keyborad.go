@@ -1,3 +1,4 @@
+// Package keyborad: get user keybord input util
 package keyborad
 
 import (
@@ -8,6 +9,7 @@ import (
 	"strings"
 )
 
+// get float64 number
 func GetFloatInPut() (input float64, err error) {
 	fmt.Print("please enter you number: ")
 	reader := bufio.NewReader(os.Stdin)
@@ -23,6 +25,7 @@ func GetFloatInPut() (input float64, err error) {
 	return input, nil
 }
 
+// get int number
 func GetIntInPut() (input int, err error) {
 	fmt.Print("please enter you number: ")
 	reader := bufio.NewReader(os.Stdin)
