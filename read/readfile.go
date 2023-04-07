@@ -1,4 +1,4 @@
-package main
+package read
 
 import (
 	"bufio"
@@ -8,13 +8,6 @@ import (
 	"strconv"
 )
 
-func main() {
-	numbers, err := GetFloats("E:\\lds\\go\\headfirstgo\\read\\data.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Printf("%#v", numbers)
-}
 func GetFileData(fileName string) {
 	file, err := os.Open(fileName)
 	if err != nil {
