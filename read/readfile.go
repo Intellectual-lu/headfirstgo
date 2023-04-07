@@ -1,4 +1,4 @@
-package read
+package main
 
 import (
 	"bufio"
@@ -8,6 +8,13 @@ import (
 	"strconv"
 )
 
+func main() {
+	numbers, err := GetFloats("E:\\lds\\go\\headfirstgo\\read\\data.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("%#v", numbers)
+}
 func GetFileData(fileName string) {
 	file, err := os.Open(fileName)
 	if err != nil {
@@ -39,6 +46,29 @@ func GetFloatData(fileName string) (numbers [3]float64, err error) {
 			return numbers, err
 		}
 		i++
+	}
+	if scanner.Err() != nil {
+		return numbers, scanner.Err()
+	}
+	err = open.Close()
+	if err != nil {
+		return numbers, err
+	}
+	return numbers, nil
+}
+
+func GetFloats(fileName string) (numbers []float64, err error) {
+	open, err := os.Open(fileName)
+	if err != nil {
+		log.Fatal(err)
+	}
+	scanner := bufio.NewScanner(open)
+	for scanner.Scan() {
+		number, err := strconv.ParseFloat(scanner.Text(), 64)
+		numbers = append(numbers, number)
+		if err != nil {
+			return numbers, err
+		}
 	}
 	if scanner.Err() != nil {
 		return numbers, scanner.Err()
